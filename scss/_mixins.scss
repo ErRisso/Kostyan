@@ -1,0 +1,17 @@
+@use "variables" as v;
+
+@mixin from($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin button($bg: v.$brand) {
+  display: inline-block;
+  padding: .8rem 1.25rem;
+  border-radius: v.$radius;
+  background: $bg;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}

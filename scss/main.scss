@@ -1,0 +1,55 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: v.$ink;
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+.wrap { width: min(1100px, calc(100% - 2rem)); margin-inline: auto; }
+.hero {
+  padding: 5rem 0;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, v.$brand, #0f172a);
+  h1 { margin: 0; font-size: clamp(2.8rem, 8vw, 5rem); }
+  &__lead { max-width: 620px; margin: 1rem auto 2rem; color: #dbeafe; font-size: 1.2rem; }
+}
+.eyebrow { letter-spacing: .18em; font-size: .8rem; font-weight: 700; }
+.button { @include m.button; }
+.button--light { background: #2563eb; text-align: center; }
+.intro { padding: 3rem 0 1rem; text-align: center; }
+.plans { padding: 1rem 0 4rem; }
+.plans > h2 { text-align: center; margin-bottom: 1.5rem; }
+.cards { display: grid; gap: 1.25rem; }
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: v.$radius;
+  background: v.$surface;
+  box-shadow: 0 8px 24px rgb(15 23 42 / .06);
+  h3 { margin: .8rem 0 .25rem; font-size: 1.5rem; }
+  p { color: v.$muted; }
+  .button { margin-top: auto; }
+  &:hover { transform: translateY(-3px); transition: transform .2s ease; }
+}
+.card--featured { border: 2px solid v.$brand; }
+.price { margin: auto 0 1rem; font-size: 2rem; }
+.price small { color: v.$muted; font-size: .9rem; font-weight: 400; }
+.badge { display: inline-block; width: fit-content; padding: .25rem .7rem; border-radius: 999px; color: white; font-size: .8rem; }
+@each $name, $color in v.$themes {
+  .badge--#{$name} { background: $color; }
+}
+.footer { padding: 1.5rem; text-align: center; color: v.$muted; }
+@include m.from(v.$bp-md) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@include m.from(v.$bp-lg) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
